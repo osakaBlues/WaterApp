@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, View, Text, Image } from 'react-native';
+import { StyleSheet, View, Text, Image, TouchableOpacity } from 'react-native';
 
 /**
  * Todo - add TouchableOpacity to each card to open the details screen
@@ -7,13 +7,13 @@ import { StyleSheet, View, Text, Image } from 'react-native';
 
 function WaterCard({ water }) {
   return (
-    <View style={styles.card}>
+    <TouchableOpacity style={styles.card}>
       <Image style={styles.image} source={water.image} />
       <View style={styles.cardContent}>
         <Text style={styles.title}>{water.name}</Text>
         <Text style={styles.subtitle}>{water.location}</Text>
       </View>
-    </View>
+    </TouchableOpacity>
   );
 }
 
@@ -28,10 +28,11 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     padding: 20,
     margin: 20,
+    width: '40%',
   },
   image: {
     width: '100%',
-    height: 200,
+    height: 100,
     borderRadius: 10,
     marginBottom: 10,
   },
