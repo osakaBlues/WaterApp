@@ -1,5 +1,13 @@
 import React from 'react';
-import { StyleSheet, View, Text, Image, TouchableOpacity } from 'react-native';
+import {
+  StyleSheet,
+  View,
+  Text,
+  Image,
+  TouchableOpacity,
+  TouchableNativeFeedback,
+  Platform,
+} from 'react-native';
 
 /**
  * Todo - add TouchableOpacity to each card to open the details screen
@@ -7,13 +15,29 @@ import { StyleSheet, View, Text, Image, TouchableOpacity } from 'react-native';
 
 function WaterCard({ water }) {
   return (
-    <TouchableOpacity style={styles.card}>
-      <Image style={styles.image} source={water.image} />
-      <View style={styles.cardContent}>
-        <Text style={styles.title}>{water.name}</Text>
-        <Text style={styles.subtitle}>{water.location}</Text>
-      </View>
-    </TouchableOpacity>
+    <>
+      {Platform.OS === 'ios' ? (
+        <TouchableOpacity activeOpacity={0.5}>
+          <View style={styles.card}>
+            <Image style={styles.image} source={water.image} />
+            <View style={styles.cardContent}>
+              <Text style={styles.title}>{water.name}</Text>
+              <Text style={styles.subtitle}>{water.location}</Text>
+            </View>
+          </View>
+        </TouchableOpacity>
+      ) : (
+        <TouchableNativeFeedback>
+          <View style={styles.card}>
+            <Image style={styles.image} source={water.image} />
+            <View style={styles.cardContent}>
+              <Text style={styles.title}>{water.name}</Text>
+              <Text style={styles.subtitle}>{water.location}</Text>
+            </View>
+          </View>
+        </TouchableNativeFeedback>
+      )}
+    </>
   );
 }
 
@@ -45,7 +69,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   subtitle: {
-    fontSize: 15,
+    fontSize: 13,
     color: 'grey',
   },
 });
