@@ -8,12 +8,14 @@ import {
   TouchableNativeFeedback,
   Platform,
 } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
 /**
- * Todo - add TouchableOpacity to each card to open the details screen
+ * Todo - add waterCard image and description to the card from getApi
  */
 
 function WaterCard({ water }) {
+  const navigation = useNavigation();
   return (
     <>
       {Platform.OS === 'ios' ? (
@@ -27,7 +29,9 @@ function WaterCard({ water }) {
           </View>
         </TouchableOpacity>
       ) : (
-        <TouchableNativeFeedback>
+        <TouchableNativeFeedback
+          onPress={() => navigation.navigate('WaterCardDetailsScreen')}
+        >
           <View style={styles.card}>
             <Image style={styles.image} source={water.image} />
             <View style={styles.cardContent}>
